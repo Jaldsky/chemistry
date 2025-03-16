@@ -32,8 +32,7 @@ source venv/bin/activate
 
 bash
 
-pip install poetry
-poetry install
+pip install -r requirements.txt
 
 4. Примените миграции:
 
