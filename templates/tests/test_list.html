@@ -93,7 +93,7 @@
                 <div class="test-card generate-test-card" onclick="showGenerateTestMessage()">
                     <div class="generate-test-content">
                         <i class="fas fa-plus-circle"></i>
-                        <span>Сгенерировать тест</span>
+                        <a href="{% url 'test_create' %}" class="test-create-link">Сгенерировать тест</a>
                     </div>
                 </div>
                 {% endif %}
@@ -120,9 +120,6 @@
             }, 3000);
         });
     });
-    
-    function showGenerateTestMessage() {
-        alert('Функция генерации тестов находится в разработке');
-    }
+
 </script>
 {% endblock %} 
