@@ -56,17 +56,19 @@
                         
                         <div class="test-content">
                             <h3 class="test-title">{{ test.title }}</h3>
-                            <div class="test-category">
-                                <span class="category-badge">{{ test.category.title }}</span>
-                            </div>
-                            {% if test.description %}
-                            <div class="test-description">
-                                {{ test.description|truncatechars:100 }}
-                            </div>
-                            {% endif %}
-                            <div class="test-meta">
-                                <span><i class="far fa-calendar-alt"></i> {{ test.created_at|date:"d.m.Y" }}</span>
-                                <span><i class="far fa-question-circle"></i> {{ test.questions.count }} вопросов</span>
+                            <div class="test-data">
+                                <div class="test-category">
+                                    <span class="category-badge">{{ test.category.title }}</span>
+                                </div>
+                                {% if test.description %}
+                                <div class="test-description">
+                                    {{ test.description|truncatechars:100 }}
+                                </div>
+                                {% endif %}
+                                <div class="test-meta">
+                                    <span><i class="far fa-calendar-alt"></i> {{ test.created_at|date:"d.m.Y" }}</span>
+                                    <span><i class="far fa-question-circle"></i> {{ test.questions.count }} вопросов</span>
+                                </div>
                             </div>
                             <div class="test-actions">
                                 <a href="{% url 'test_detail' test.id %}" class="btn btn-primary btn-sm">
@@ -90,7 +92,7 @@
                 {% endfor %}
                 
                 {% if user_info.user_type == 'teacher' %}
-                <div class="test-card generate-test-card" onclick="showGenerateTestMessage()">
+                <div class="test-card generate-test-card">
                     <div class="generate-test-content">
                         <i class="fas fa-plus-circle"></i>
                         <a href="{% url 'test_create' %}" class="test-create-link">Сгенерировать тест</a>
