@@ -657,5 +657,14 @@ class TestCreateView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request):
-        return render(request, self.template_name)
+    def get(self, request, *args, **kwargs):
+        user_info = request.user_info if hasattr(request, 'user_info') else None
+        is_authenticated = request.is_authenticated if hasattr(request, 'is_authenticated') else False
+
+        context = {
+            'title': 'Создать тест | Химия',
+            'user_info': user_info,
+            'is_authenticated': is_authenticated,
+        }
+
+        return render(request, self.template_name, context)

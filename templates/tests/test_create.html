@@ -8,53 +8,58 @@
 {% endblock %}
 
 {% block content %}
-<div class="create-task-content">
+<div class="create-tests-container">
+    <h1>Сгенерировать тест</h1>
 
-    <div class="dropbox-textfield-group">
-        <label class="select-task">
-            <select id="task-dropbox">
-                <option value="task-one"{% if form.selected_task == 'task-one' %}selected{% endif %}>Задание 1</option>
-                <option value="task-two"{% if form.selected_task == 'task-two' %}selected{% endif %}>Задание 2</option>
-                <option value="task-three"{% if form.selected_task == 'task-three' %}selected{% endif %}>Задание 3</option>
-                <option value="task-four"{% if form.selected_task == 'task-four' %}selected{% endif %}>Задание 4</option>
-                <option value="task-five"{% if form.selected_task == 'task-five' %}selected{% endif %}>Задание 5</option>
-                <option value="task-six"{% if form.selected_task == 'task-six' %}selected{% endif %}>Задание 6</option>
-                <option value="task-seven"{% if form.selected_task == 'task-seven' %}selected{% endif %}>Задание 7</option>
-                <option value="task-eighth"{% if form.selected_task == 'task-eighth' %}selected{% endif %}>Задание 8</option>
-                <option value="task-nine"{% if form.selected_task == 'task-nine' %}selected{% endif %}>Задание 9</option>
-                <option value="task-ten"{% if form.selected_task == 'task-ten' %}selected{% endif %}>Задание 10</option>
-                <option value="task-eleven"{% if form.selected_task == 'task-eleven' %}selected{% endif %}>Задание 11</option>
-                <option value="task-twelve"{% if form.selected_task == 'task-twelve' %}selected{% endif %}>Задание 12</option>
-            </select>
-        </label>
+    <div class="create-tests-content">
+        <div class="textfield-content">
+            <label class="textfield-label">
+                <textarea id="tasks-textfield" rows="30" cols="120">{{ form.task_text }}</textarea>
+            </label>
+        </div>
 
-        <label class="input-text-field">
-            <textarea id="tasks-textarea" rows="30" cols="100">{{ form.task_text }}</textarea>
-        </label>
-    </div>
+        <div class="control-panel-content">
+            <label class="task-selector-label">
+                <select id="task-selector">
+                    <option value="task-one"{% if form.selected_task == 'task-one' %}selected{% endif %}>Задание 1</option>
+                    <option value="task-two"{% if form.selected_task == 'task-two' %}selected{% endif %}>Задание 2</option>
+                    <option value="task-three"{% if form.selected_task == 'task-three' %}selected{% endif %}>Задание 3</option>
+                    <option value="task-four"{% if form.selected_task == 'task-four' %}selected{% endif %}>Задание 4</option>
+                    <option value="task-five"{% if form.selected_task == 'task-five' %}selected{% endif %}>Задание 5</option>
+                    <option value="task-six"{% if form.selected_task == 'task-six' %}selected{% endif %}>Задание 6</option>
+                    <option value="task-seven"{% if form.selected_task == 'task-seven' %}selected{% endif %}>Задание 7</option>
+                    <option value="task-eighth"{% if form.selected_task == 'task-eighth' %}selected{% endif %}>Задание 8</option>
+                    <option value="task-nine"{% if form.selected_task == 'task-nine' %}selected{% endif %}>Задание 9</option>
+                    <option value="task-ten"{% if form.selected_task == 'task-ten' %}selected{% endif %}>Задание 10</option>
+                    <option value="task-eleven"{% if form.selected_task == 'task-eleven' %}selected{% endif %}>Задание 11</option>
+                    <option value="task-twelve"{% if form.selected_task == 'task-twelve' %}selected{% endif %}>Задание 12</option>
+                </select>
+            </label>
 
-    <div class="buttons-group">
-        <label class="clear-button">
-            <button id="task-clear-button">Очистить</button>
-        </label>
+            <div class="buttons-container">
+                <label class="clear-button-label">
+                    <button id="clear-button">Очистить</button>
+                </label>
 
-        <label class="generate-button">
-            <form id="task-generate-form" action="/create_task/" method="post">
-                <input type="hidden" id="selected-task" name="selected_task" value="">
-                <button id="task-generate-button">Сгенерировать</button>
-            </form>
-        </label>
+                <label class="task-generate-form-label">
+                    <form id="task-generate-form" action="/create_task/" method="post">
+                        <input type="hidden" id="selected-task" value="">
+                        <button id="task-generate-button">Сгенерировать</button>
+                    </form>
+                </label>
 
-        <label class="add-button">
-            <button id="task-add-button">Добавить</button>
-        </label>
+                <label class="add-button-label">
+                    <button id="add-button">Добавить</button>
+                </label>
+            </div>
+        </div>
     </div>
 
 </div>
 
 <script>
-    document.getElementById('task-clear-button').addEventListener('click', function() {
-        document.getElementById('tasks-textarea').value = ''; // Очистить текстовое поле
+    document.getElementById('clear-button').addEventListener('click', function() {
+        document.getElementById('tasks-textfield').value = ''; // Очистить текстовое поле
     });
 
     document.getElementById('task-generate-form').addEventListener('submit', function(event) {

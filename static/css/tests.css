@@ -3,6 +3,7 @@
 .test-detail-container,
 .test-take-container,
 .test-result-container,
+.create-tests-container,
 .test-review-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -489,4 +490,62 @@ h1, h3, .tests-container {
     .question-container {
         padding: 2rem;
     }
+}
+
+.create-tests-container {
+    background: var(--bg-dark);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(123, 44, 191, 0.3);
+}
+
+.create-tests-container h1 {
+    text-align: center;
+}
+
+.create-tests-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.control-panel-content {
+    display: flow;
+    grid-template-columns: repeat(1, 1fr);
+    margin-left: 2rem;
+}
+
+.buttons-container {
+    display: grid;
+    margin-top: 3rem;
+    grid-gap: 1rem;
+}
+
+.control-panel-content button {
+    background: var(--primary-color);
+    color: var(--text-bright);
+    box-shadow: inset 0 0 0 1px rgba(123, 44, 191, 0.3);
+    outline: none;
+    width: 100%;
+    font-weight: bold;
+    border: none;
+    padding: 1rem 2.5rem;
+}
+
+.control-panel-content button:hover {
+    filter: brightness(1.2);
+    box-shadow: inset 0 0 0 2px var(--primary-dark);
+}
+
+#tasks-textfield {
+    resize: none;
+    color: var(--text-bright);
+    outline: none;
+}
+
+#task-selector {
+    width: 15rem;
+    color: var(--text-bright);
+    font-size: 2.0rem;
+    text-align: center;
+    padding: 1rem 0;
+    outline: none;
 }
