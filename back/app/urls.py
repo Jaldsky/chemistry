@@ -19,7 +19,7 @@ from .views.TeacherView import TeacherDashboardView, StudentDetailView, StudentT
 from django.views.decorators.csrf import csrf_protect
 from .views.ProfileView import ProfileView
 from .views.TeacherRatingView import TeacherRatingListView
-from .views.TestCreateView import TestCreateView
+from .views.TestView import TestCreateView
 
 # Создаем роутер для API
 router = DefaultRouter()

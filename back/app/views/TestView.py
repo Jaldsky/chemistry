@@ -647,4 +647,15 @@ class TestStartView(View):
             # Сохраняем в сессии
             request.session['temp_attempt'] = session_attempt
             
-            return redirect('test_take', test_id=test_id, attempt_id=0)  # используем attempt_id=0 для временной попытки 
+            return redirect('test_take', test_id=test_id, attempt_id=0)  # используем attempt_id=0 для временной попытки
+
+
+class TestCreateView(View):
+    template_name = 'tests/test_create.html'
+
+    @method_decorator(check_auth_tokens)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request):
+        return render(request, self.template_name)
