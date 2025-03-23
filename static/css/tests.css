@@ -9,6 +9,10 @@
     padding: 3rem 2rem;
 }
 
+h1, h3, .tests-container {
+    color: var(--text-bright);
+}
+
 /* Заголовки */
 .test-header {
     background: var(--bg-light);
@@ -213,6 +217,14 @@
 .btn-secondary:hover {
     background: rgba(123, 44, 191, 0.1);
     color: var(--primary-light);
+}
+
+.test-data {
+    padding-left: 0.8rem;
+}
+
+.test-title {
+    text-align: center;
 }
 
 /* Статус теста */
