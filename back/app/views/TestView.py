@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib import messages
 from django.utils import timezone
+
+from ..forms import CreateTaskForm
 from ..models import Test, TestQuestion, TestAttempt, TestAnswer, Class, ClassStudent, User
 from ..decorators import check_auth_tokens, teacher_required
 from django.utils.decorators import method_decorator
@@ -657,14 +659,29 @@ class TestCreateView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         user_info = request.user_info if hasattr(request, 'user_info') else None
         is_authenticated = request.is_authenticated if hasattr(request, 'is_authenticated') else False
+        if not is_authenticated:
+            return redirect('/app/login/')
 
         context = {
             'title': 'Создать тест | Химия',
             'user_info': user_info,
             'is_authenticated': is_authenticated,
         }
+        return render(request, self.template_name, context)
 
+    def post(self, request):
+        is_authenticated = request.is_authenticated if hasattr(request, 'is_authenticated') else False
+        if not is_authenticated:
+            return redirect('/app/login/')
+
+        form = CreateTaskForm(request.POST)
+        if not form.is_valid():
+            raise Exception
+
+        context = {
+            'form': form.create_task_with_prompt(),
+        }
         return render(request, self.template_name, context)

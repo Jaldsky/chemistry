@@ -1,4 +1,9 @@
+from os import getenv
+
 from django import forms
+
+from .core.core.prompt import Prompt
+from .core.core.yandex_gpt_client import YandexGPTClient
 from .models import News
 
 class NewsAdminForm(forms.ModelForm):
@@ -16,4 +21,24 @@ class NewsAdminForm(forms.ModelForm):
             # Автоматически устанавливаем категорию 'article' для статей
             cleaned_data['category'] = 'article'
         
-        return cleaned_data 
+        return cleaned_data
+
+
+class CreateTaskForm(forms.Form):
+    selected_task = forms.CharField(widget=forms.Textarea)
+
+    def create_task_with_prompt(self):
+        prompt = Prompt()
+        selected_task = self.cleaned_data.get('selected_task')
+        method = f"get_{selected_task.replace('-', '_')}_prompt"
+
+        task_text = YandexGPTClient(
+            token=getenv('OAUTH_TOKEN'),
+            folder_id=getenv('FOLDER_ID')
+        ).get_prompt_response_msg(
+            text=getattr(prompt, method)
+        )
+        return {
+            'task_text': task_text,
+            'selected_task': selected_task
+        }

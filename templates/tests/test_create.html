@@ -9,7 +9,7 @@
 
 {% block content %}
 <div class="create-tests-container">
-    <h1>Сгенерировать тест</h1>
+    <h1>Сгенерировать задание</h1>
 
     <div class="create-tests-content">
         <div class="textfield-content">
@@ -42,9 +42,10 @@
                 </label>
 
                 <label class="task-generate-form-label">
-                    <form id="task-generate-form" action="/create_task/" method="post">
-                        <input type="hidden" id="selected-task" value="">
-                        <button id="task-generate-button">Сгенерировать</button>
+                    <form id="task-generate-form" action="create" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="selected-task" name="selected_task" value="">
+                        <button id="task-generate-button" type="submit">Сгенерировать</button>
                     </form>
                 </label>
 
@@ -65,7 +66,8 @@
     document.getElementById('task-generate-form').addEventListener('submit', function(event) {
         event.preventDefault(); // Предотвращаем отправку формы по умолчанию
 
-        const selectedTask = document.getElementById('task-dropbox').value;
+        // Получаем выбранное значение из select
+        const selectedTask = document.getElementById('task-selector').value;
         document.getElementById('selected-task').value = selectedTask;
 
         this.submit(); // Отправляем форму
