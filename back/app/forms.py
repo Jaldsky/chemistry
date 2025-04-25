@@ -27,7 +27,7 @@ class NewsAdminForm(forms.ModelForm):
 class CreateTaskForm(forms.Form):
     selected_task = forms.CharField(widget=forms.Textarea)
 
-    def create_task_with_prompt(self):
+    def exec(self):
         prompt = Prompt()
         selected_task = self.cleaned_data.get('selected_task')
         method = f"get_{selected_task.replace('-', '_')}_prompt"
@@ -42,3 +42,14 @@ class CreateTaskForm(forms.Form):
             'task_text': task_text,
             'selected_task': selected_task
         }
+
+
+class AddTaskToBaseForm(forms.Form):
+    SUCCESS_MSG: str = "Задание успешно добавлено в базу данных!"
+
+    task_text = forms.CharField(widget=forms.Textarea)
+
+    def exec(self):
+        msg = self.SUCCESS_MSG
+
+        return {'info_msg': msg}

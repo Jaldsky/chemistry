@@ -3,7 +3,7 @@ from django.views import View
 from django.contrib import messages
 from django.utils import timezone
 
-from ..forms import CreateTaskForm
+from ..forms import CreateTaskForm, AddTaskToBaseForm
 from ..models import Test, TestQuestion, TestAttempt, TestAnswer, Class, ClassStudent, User
 from ..decorators import check_auth_tokens, teacher_required
 from django.utils.decorators import method_decorator
@@ -677,11 +677,26 @@ class TestCreateView(View):
         if not is_authenticated:
             return redirect('/app/login/')
 
-        form = CreateTaskForm(request.POST)
-        if not form.is_valid():
-            raise Exception
+        data = request.POST
 
-        context = {
-            'form': form.create_task_with_prompt(),
-        }
-        return render(request, self.template_name, context)
+        if 'selected_task' in data:
+            form = CreateTaskForm(data)
+            if not form.is_valid():
+                raise Exception
+
+            context = {
+                'form': form.exec(),
+            }
+            return render(request, self.template_name, context)
+
+        if 'task_text' in data:
+            form = AddTaskToBaseForm(data)
+            if not form.is_valid():
+                raise Exception
+
+            context = {
+                'form': form.exec(),
+            }
+            return render(request, self.template_name, context)
+
+        raise Exception

@@ -11,6 +11,8 @@
 <div class="create-tests-container">
     <h1>Сгенерировать задание</h1>
 
+    <div id="notification" class="notification"></div>
+
     <div class="create-tests-content">
         <div class="textfield-content">
             <label class="textfield-label">
@@ -50,7 +52,11 @@
                 </label>
 
                 <label class="add-button-label">
-                    <button id="add-button">Добавить</button>
+                    <form id="task-add-form" action="create" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="task-text" name="task_text" value="">
+                        <button id="add-button" type="submit">Добавить</button>
+                    </form>
                 </label>
             </div>
         </div>
@@ -69,9 +75,33 @@
         // Получаем выбранное значение из select
         const selectedTask = document.getElementById('task-selector').value;
         document.getElementById('selected-task').value = selectedTask;
-
-        this.submit(); // Отправляем форму
+        this.submit();
     });
+
+    document.getElementById('task-add-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const taskText = document.getElementById('tasks-textfield').value;
+        document.getElementById('task-text').value = taskText;
+        this.submit();
+    });
+
+    {% if form.info_msg %}
+        document.addEventListener('DOMContentLoaded', function() {
+            showNotification("{{ form.info_msg|escapejs }}");
+        });
+    {% endif %}
+
+    function showNotification(message) {
+        const notification = document.getElementById('notification');
+        notification.textContent = message;
+        notification.style.display = 'block';
+
+        // Уведомление автоматически исчезнет через 3 секунды
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000);
+    }
+
 </script>
 {% endblock %}
 </html>
