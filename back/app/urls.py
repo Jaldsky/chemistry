@@ -31,17 +31,17 @@ urlpatterns = [
     # HTML страницы
     path('login/', LoginPageView.as_view(), name='login_page'),
     path('register/', RegisterPageView.as_view(), name='register_page'),
-    
+
     # API эндпоинты
     path('api/register/', RegisterView.as_view(), name='register_api'),
     path('api/login/', LoginView.as_view(), name='login_api'),
     path('api/logout/', LogoutView.as_view(), name='logout_api'),
-    
+
     # HTML страницы для новостей и статей
     path('news/<int:pk>/', NewsView.NewsDetailView.as_view(), name='news_detail'),
     path('articles/', ArticleListView.as_view(), name='articles_list'),
     path('articles/<int:pk>/', ArticleDetailView.as_view(), name='article_detail'),
-    
+
     # API URLs
     path('api/', include(router.urls)),
     path('class/', ClassView.as_view(), name='class'),
@@ -57,8 +57,8 @@ urlpatterns = [
     path('tests/review/', TestReviewView.as_view(), name='test_review'),
     path('tests/review/class/<int:class_id>/', TestReviewView.as_view(), name='test_review_class'),
     path('tests/review/<int:attempt_id>/', TestReviewDetailView.as_view(), name='test_review_detail'),
-    path('tests/create', TestCreateView.as_view(), name='test_create'),
-    
+    path('tests/create', TestCreateView.as_view(), name='task_create'),
+
     # Панель учителя
     path('dashboard/', TeacherDashboardView.as_view(), name='teacher_dashboard'),
     path('dashboard/student/<int:student_id>/', StudentDetailView.as_view(), name='student_detail'),

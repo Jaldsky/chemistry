@@ -653,7 +653,7 @@ class TestStartView(View):
 
 
 class TestCreateView(View):
-    template_name = 'tests/test_create.html'
+    template_name = 'tests/task_create.html'
 
     @method_decorator(check_auth_tokens)
     def dispatch(self, request, *args, **kwargs):
