@@ -13,6 +13,7 @@
 
     <div id="notification" class="notification"></div>
 
+    <div class="task-title"><h3>Текст задания:</h3></div>
     <div class="create-tests-content">
         <div class="textfield-content">
             <label class="textfield-label">
@@ -55,10 +56,20 @@
                     <form id="task-add-form" action="create" method="post">
                         {% csrf_token %}
                         <input type="hidden" id="task-text" name="task_text" value="">
+                        <input type="hidden" id="task-answer" name="task_answer" value="">
                         <button id="add-button" type="submit">Добавить</button>
                     </form>
                 </label>
             </div>
+        </div>
+    </div>
+
+    <div class="answer-title"><h3>Правильный ответ:</h3></div>
+    <div class="answer-task-content">
+        <div class="answer-textfield-content">
+            <label class="answer-textfield-label">
+                <textarea id="answer-tasks-textfield" rows="5" cols="120"></textarea>
+            </label>
         </div>
     </div>
 
@@ -81,7 +92,9 @@
     document.getElementById('task-add-form').addEventListener('submit', function(event) {
         event.preventDefault();
         const taskText = document.getElementById('tasks-textfield').value;
+        const taskAnswer = document.getElementById('answer-tasks-textfield').value;
         document.getElementById('task-text').value = taskText;
+        document.getElementById('task-answer').value = taskAnswer;
         this.submit();
     });
 

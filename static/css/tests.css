@@ -535,7 +535,7 @@ h1, h3, .tests-container {
     box-shadow: inset 0 0 0 2px var(--primary-dark);
 }
 
-#tasks-textfield {
+#tasks-textfield, #answer-tasks-textfield {
     resize: none;
     color: var(--text-bright);
     outline: none;

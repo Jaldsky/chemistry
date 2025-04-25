@@ -48,8 +48,13 @@ class AddTaskToBaseForm(forms.Form):
     SUCCESS_MSG: str = "Задание успешно добавлено в базу данных!"
 
     task_text = forms.CharField(widget=forms.Textarea)
+    task_answer = forms.CharField(widget=forms.Textarea)
 
     def exec(self):
+        task_text = self.cleaned_data.get('task_text')
+        task_answer = self.cleaned_data.get('task_answer')
+
+
         msg = self.SUCCESS_MSG
 
         return {'info_msg': msg}

@@ -7,7 +7,7 @@ from ..forms import CreateTaskForm, AddTaskToBaseForm
 from ..models import Test, TestQuestion, TestAttempt, TestAnswer, Class, ClassStudent, User
 from ..decorators import check_auth_tokens, teacher_required
 from django.utils.decorators import method_decorator
-from django.db.models import Sum, Count
+from django.db.models import Sum
 from django.http import JsonResponse
 import json
 import logging
@@ -689,7 +689,15 @@ class TestCreateView(View):
             }
             return render(request, self.template_name, context)
 
-        if 'task_text' in data:
+        if not data['task_text'] or not data['task_answer']:
+            context = {
+                'form': {
+                    'info_msg': 'Отсутствует вопрос или ответ!'
+                },
+            }
+            return render(request, self.template_name, context)
+
+        if 'task_text' in data and 'task_answer' in data:
             form = AddTaskToBaseForm(data)
             if not form.is_valid():
                 raise Exception
