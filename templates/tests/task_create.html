@@ -57,6 +57,7 @@
                         {% csrf_token %}
                         <input type="hidden" id="task-text" name="task_text" value="">
                         <input type="hidden" id="task-answer" name="task_answer" value="">
+                        <input type="hidden" id="selected-task-answer" name="selected_task_answer" value="">
                         <button id="add-button" type="submit">Добавить</button>
                     </form>
                 </label>
@@ -93,8 +94,10 @@
         event.preventDefault();
         const taskText = document.getElementById('tasks-textfield').value;
         const taskAnswer = document.getElementById('answer-tasks-textfield').value;
+        const selectedTask = document.getElementById('task-selector').value;
         document.getElementById('task-text').value = taskText;
         document.getElementById('task-answer').value = taskAnswer;
+        document.getElementById('selected-task-answer').value = selectedTask;
         this.submit();
     });
 
