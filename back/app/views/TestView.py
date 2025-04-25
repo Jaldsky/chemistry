@@ -38,7 +38,7 @@ class TestListView(View):
                     'max_score': attempt.max_score,
                     'percent': attempt.get_percent_score()
                 }
-        
+
         context = {
             'title': 'Тесты',
             'tests': tests,
@@ -167,10 +167,10 @@ class TestTakeView(View):
             if attempt.user_id != user_info['user_id']:
                 messages.error(request, 'У вас нет доступа к этой попытке')
                 return redirect('test_list')
-            
+
             # Получаем все вопросы для авторизованного пользователя
             questions = TestQuestion.objects.filter(test=test).order_by('order')
-            
+
             # Получаем уже данные ответы
             answers = TestAnswer.objects.filter(attempt=attempt)
             answered_questions = {answer.question_id: answer for answer in answers}

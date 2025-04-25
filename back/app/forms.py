@@ -55,30 +55,21 @@ class AddTaskToBaseForm(forms.Form):
     selected_task_answer = forms.CharField(widget=forms.Textarea)
 
     def mapping_tests(self, value: str) -> int:
-        if value == 'task-one':
-            return 1
-        if value == 'task-two':
-            return 2
-        if value == 'task-three':
-            return 3
-        if value == 'task-four':
-            return 4
-        if value == 'task-five':
-            return 5
-        if value == 'task-six':
-            return 6
-        if value == 'task-seven':
-            return 7
-        if value == 'task-eighth':
-            return 8
-        if value == 'task-nine':
-            return 9
-        if value == 'task-ten':
-            return 10
-        if value == 'task-eleven':
-            return 11
-        if value == 'task-twelve':
-            return 12
+        task_mapping = {
+            'task-one': 1,
+            'task-two': 2,
+            'task-three': 3,
+            'task-four': 4,
+            'task-five': 5,
+            'task-six': 6,
+            'task-seven': 7,
+            'task-eighth': 8,
+            'task-nine': 9,
+            'task-ten': 10,
+            'task-eleven': 11,
+            'task-twelve': 12
+        }
+        return task_mapping.get(value)
 
     def exec(self):
         task_text = self.cleaned_data.get('task_text')

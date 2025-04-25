@@ -181,13 +181,24 @@ h1, h3, .tests-container {
     color: white;
 }
 
+.generate-task-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 3.0rem;
+    font-weight: bold;
+    padding-top: 7.0rem;
+    margin-left: 1.0rem;
+}
+
 .generate-test-content {
     display: flex;
     align-items: center;
     gap: 1rem;
-    font-size: 3.2rem;
+    font-size: 3.5rem;
+    font-weight: bold;
     padding-top: 7.0rem;
-    margin-left: 1.5rem;
+    margin-left: 1.0rem;
 }
 
 .btn-primary {

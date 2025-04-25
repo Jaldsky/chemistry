@@ -92,10 +92,17 @@
                 {% endfor %}
                 
                 {% if user_info.user_type == 'teacher' %}
-                <div class="test-card generate-test-card">
+                <div class="test-card">
+                    <div class="generate-task-content">
+                        <a href="{% url 'task_create' %}" class="task-create-link">Сгенерировать задание</a>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if user_info.user_type == 'student' %}
+                <div class="test-card">
                     <div class="generate-test-content">
-                        <i class="fas fa-plus-circle"></i>
-                        <a href="{% url 'task_create' %}" class="test-create-link">Сгенерировать задание</a>
+                        <a href="{% url 'task_create' %}" class="test-create-link">Сгенерировать тест</a>
                     </div>
                 </div>
                 {% endif %}
