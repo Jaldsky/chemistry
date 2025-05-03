@@ -1,3 +1,5 @@
+import random
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib import messages
@@ -652,7 +654,7 @@ class TestStartView(View):
             return redirect('test_take', test_id=test_id, attempt_id=0)  # используем attempt_id=0 для временной попытки
 
 
-class TestCreateView(View):
+class TaskCreateView(View):
     template_name = 'tests/task_create.html'
 
     @method_decorator(check_auth_tokens)
@@ -666,7 +668,7 @@ class TestCreateView(View):
             return redirect('/app/login/')
 
         context = {
-            'title': 'Создать тест | Химия',
+            'title': 'Создать задание | Химия',
             'user_info': user_info,
             'is_authenticated': is_authenticated,
         }
@@ -708,3 +710,40 @@ class TestCreateView(View):
             return render(request, self.template_name, context)
 
         raise Exception
+
+
+class TestCreateView(View):
+
+    @method_decorator(check_auth_tokens)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request):
+        is_authenticated = request.is_authenticated if hasattr(request, 'is_authenticated') else False
+        if not is_authenticated:
+            return redirect('/app/login/')
+
+        last_test_id: int = Test.objects.latest('id').id
+        test_id: int = last_test_id + 1
+        title: str = f"Вариант {test_id}"
+        description: str = "Автосгенерированный пробный вариант теста"
+        category_id: int = 1
+        Test.objects.create(id=test_id, title=title, category_id=category_id, description=description)
+
+        unique_orders = TestQuestion.objects.values_list('order', flat=True).distinct().order_by('order')
+        for order in unique_orders:
+            questions = TestQuestion.objects.filter(order=order)
+
+            if questions.count() == 1:
+                question = questions.first()
+            else:
+                question = random.choice(list(questions))
+
+            TestQuestion.objects.create(
+                test_id=test_id,
+                order=question.order,
+                answer=question.answer,
+                question_text=question.question_text
+            )
+
+        return redirect(f'/app/tests/{test_id}')

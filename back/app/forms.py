@@ -77,7 +77,8 @@ class AddTaskToBaseForm(forms.Form):
         selected_task_answer = self.cleaned_data.get('selected_task_answer')
         try:
             TestQuestion.objects.create(
-                test_id=self.mapping_tests(selected_task_answer),
+                test_id=0,
+                order=self.mapping_tests(selected_task_answer),
                 answer=task_answer,
                 question_text=task_text
             )

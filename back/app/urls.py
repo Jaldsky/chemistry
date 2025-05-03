@@ -19,7 +19,7 @@ from .views.TeacherView import TeacherDashboardView, StudentDetailView, StudentT
 from django.views.decorators.csrf import csrf_protect
 from .views.ProfileView import ProfileView
 from .views.TeacherRatingView import TeacherRatingListView
-from .views.TestView import TestCreateView
+from .views.TestView import TaskCreateView, TestCreateView
 
 # Создаем роутер для API
 router = DefaultRouter()
@@ -57,7 +57,8 @@ urlpatterns = [
     path('tests/review/', TestReviewView.as_view(), name='test_review'),
     path('tests/review/class/<int:class_id>/', TestReviewView.as_view(), name='test_review_class'),
     path('tests/review/<int:attempt_id>/', TestReviewDetailView.as_view(), name='test_review_detail'),
-    path('tests/create', TestCreateView.as_view(), name='task_create'),
+    path('tests/create', TestCreateView.as_view(), name='test_create'),
+    path('task/create', TaskCreateView.as_view(), name='task_create'),
 
     # Панель учителя
     path('dashboard/', TeacherDashboardView.as_view(), name='teacher_dashboard'),
