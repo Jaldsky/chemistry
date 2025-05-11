@@ -22,14 +22,14 @@
   --bg-color: #1A1625;           /* Тёмный фон */
   --bg-light: #241B2F;           /* Светлее фон */
   --bg-dark: #13111B;            /* Самый тёмный фон */
-  
+
   /* Тени */
   --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.6);
   --shadow-xl: 0 15px 50px rgba(0, 0, 0, 0.7);
-  
+
   /* Скругления */
   --radius-xs: 4px;
   --radius-sm: 8px;
@@ -37,22 +37,22 @@
   --radius-lg: 20px;
   --radius-xl: 30px;
   --radius-full: 9999px;
-  
+
   /* Анимации */
   --transition-fast: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   --transition-slow: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-  
+
   /* Шрифты */
   --font-main: 'Inter', 'Roboto', 'Arial', sans-serif;
   --font-heading: 'Poppins', 'Montserrat', 'Arial', sans-serif;
   --font-mono: 'Fira Code', 'Consolas', monospace;
-  
+
   /* Размеры */
   --header-height: 7rem;
   --container-max-width: 1280px;
   --container-padding: 2rem;
-  
+
   /* Z-индексы */
   --z-negative: -1;
   --z-normal: 1;
@@ -313,7 +313,7 @@ a.underline-link:hover::after {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .btn-group .btn {
     width: 100%;
   }
@@ -345,7 +345,7 @@ a.underline-link:hover::after {
   html {
     font-size: 58%;
   }
-  
+
   .container {
     padding: 0 1.5rem;
   }
@@ -355,11 +355,11 @@ a.underline-link:hover::after {
   html {
     font-size: 56%;
   }
-  
+
   h1 {
     font-size: 3.8rem;
   }
-  
+
   h2 {
     font-size: 3.2rem;
   }
@@ -369,15 +369,15 @@ a.underline-link:hover::after {
   html {
     font-size: 54%;
   }
-  
+
   h1 {
     font-size: 3.4rem;
   }
-  
+
   h2 {
     font-size: 2.8rem;
   }
-  
+
   .btn {
     padding: 1rem 2rem;
     font-size: 1.5rem;
@@ -502,11 +502,11 @@ nav {
     padding: 0.5rem 1rem;
     font-size: 1.3rem;
   }
-  
+
   .nav-links {
     gap: 0.5rem;
   }
-  
+
   .username {
     max-width: 100px;
   }
@@ -569,7 +569,7 @@ nav {
   .logo {
     font-size: 2rem;
   }
-  
+
   .nav-links li a {
     font-size: 1.4rem;
   }
@@ -763,7 +763,7 @@ footer::before {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  
+
   footer {
     padding: 4rem 0 2rem;
   }
@@ -896,16 +896,16 @@ footer::before {
   .user-menu-trigger span {
     display: none;
   }
-  
+
   .user-menu-trigger {
     padding: 0.8rem;
   }
-  
+
   .user-dropdown {
     width: 28rem;
     right: -5rem;
   }
-  
+
   .user-dropdown::before {
     content: '';
     position: absolute;
@@ -956,19 +956,19 @@ footer::before {
   html {
     font-size: 58%; /* Уменьшаем базовый размер шрифта для очень маленьких экранов */
   }
-  
+
   h1 {
     font-size: 3.6rem;
   }
-  
+
   h2 {
     font-size: 2.8rem;
   }
-  
+
   .container {
     padding: 0 1.5rem;
   }
-  
+
   .btn {
     padding: 1rem 2rem;
     font-size: 1.4rem;
@@ -979,27 +979,6 @@ footer::before {
 a:focus, button:focus, input:focus, textarea:focus, select:focus {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
-}
-
-/* Темная тема (подготовка) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #121212;
-    --bg-light: #1e1e1e;
-    --bg-dark: #2d2d2d;
-    --text-color: #2d2d2d;
-    --text-light: #adb5bd;
-    --text-lighter: #6c757d;
-  }
-  
-  .glass-card {
-    background: rgba(30, 30, 30, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  img {
-    filter: brightness(0.9);
-  }
 }
 
 /* Улучшенные анимации для интерактивных элементов */

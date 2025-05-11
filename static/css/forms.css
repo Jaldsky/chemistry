@@ -486,9 +486,9 @@ body {
     background-color: #fff;
 }
 
-/* Обновляем стили для активного поля, чтобы они работали с вложенной структурой */
-.form-group.active-field .password-field input {
+.password-field input, .username-field input{
     border-color: #3498db;
+    color: #000000;
     background-color: #fff;
 }
 
