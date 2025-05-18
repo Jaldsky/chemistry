@@ -56,18 +56,31 @@ class AddTaskToBaseForm(forms.Form):
 
     def mapping_tests(self, value: str) -> int:
         task_mapping = {
-            'task-one': 1,
-            'task-two': 2,
-            'task-three': 3,
-            'task-four': 4,
-            'task-five': 5,
-            'task-six': 6,
-            'task-seven': 7,
-            'task-eighth': 8,
-            'task-nine': 9,
-            'task-ten': 10,
-            'task-eleven': 11,
-            'task-twelve': 12
+            'task-1-p1': 1,
+            'task-2-p1': 2,
+            'task-3-p1': 3,
+            'task-4-p1': 4,
+            'task-5-p1': 5,
+            'task-6-p1': 6,
+            'task-7-p1': 7,
+            'task-8-p1': 8,
+            'task-9-p1': 9,
+            'task-10-p1': 10,
+            'task-11-p1': 11,
+            'task-12-p1': 12,
+            'task-13-p1': 13,
+            'task-14-p1': 14,
+            'task-15-p1': 15,
+            'task-16-p1': 16,
+            'task-17-p1': 17,
+            'task-18-p1': 18,
+            'task-19-p1': 19,
+            'task-20-p1': 20,
+            'task-1-p2': 29,
+            'task-2-p2': 30,
+            'task-3-p2': 31,
+            'task-4-p2': 32,
+            'task-5-p2': 33,
         }
         return task_mapping.get(value)
 
